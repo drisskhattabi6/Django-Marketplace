@@ -1,0 +1,29 @@
+<header>
+    <div class="container flex-sp-bet">
+        <a href="/">
+            <h2 class="logo">Marketplace</h2>
+        </a>
+        <form class="flex-center search-bar-header" 
+            style="padding: 0; margin: 0; background-color: none; color: none;" 
+            action="{% url 'item:browse' %}?q={{ query }}">
+            
+            <input type="text" placeholder="Search..." name="q" value="{{query}}">
+            <button class="btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+        <nav class="nav">
+            <ul>
+                <li><a href="{% url 'item:browse' %}">Browse</a></li>
+                <li><a href="{% url 'item:new' %}">New Item</a></li>
+                {% if not user.is_authenticated %}
+                <li><button class="btn"><a href="{% url 'core:login' %}"> <i class="fa-solid fa-right-to-bracket"></i> Login</a></button></li>
+                <li><button class="btn"><a href="{% url 'core:register' %}"><i class="fa-solid fa-user-plus"></i> Register</a></button></li>
+                {% else %}
+                <li><a href="{% url 'dashboard:index' %}">Dashboard</a></li>
+                <li><a href="{% url 'conversation:inbox' %}">Inbox</a></li>
+                <li><a href="{% url 'core:logout' %}" class="btn flex-center"> <i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+                
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</header>

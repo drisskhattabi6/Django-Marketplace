@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Browse Products {% endblock title %}
+
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'css/product.css' %}">
+    <link rel="stylesheet" href="{% static 'css/browse.css' %}">
+{% endblock links %}
+
+
+{% block content %}
+
+{% include 'header.html' %}
+
+<main class="flex-ctr-str" style="padding: 0;">
+
+    <div class="options-container flex-clm-str">
+        <form action="" method="get" class="flex-ctr-clm ">
+            <input type="text" name="q" value="{{ query }}" placeholder="Search for Product" class="search-bar">
+            <button type="submit" class="btn search-btn">Search</button>
+        </form>
+
+        <br>
+
+        <p style="color: #fff; font-size: 18px; font-weight: 700;"> Categories : </p>
+        <ul  class="category-checkbox">
+            {% for category in categories %}
+            <li class="flex-center" {% if category.id == category_id %} style="background-color: #6b6b6b;" {% endif %} > 
+                <a href="{% url 'item:browse' %}?q={{ query }}&category={{ category.id }}"> {{ category.name }} 
+            </li>
+            {% endfor %}
+        </ul>
+
+        <br>
+
+        <p style="color: #fff; font-size: 18px; font-weight: 700; ">
+            <a href="{% url 'item:browse' %}" class="btn" style="color: #fff;"> Clear Filters </a>
+        </p>
+    </div>
+
+    <div class="browse-container flex-ctr-clm">
+        {% if products.count == 0 %}
+       <h2 class="no-items"> No Items Found </h2>
+        {% else %}
+        <h2>Products </h2>
+        {% endif %}
+
+        <div class="flex-ctr-wr products">
+            {% for product in products %}
+               <div class="flex-ctr-clm product-container">
+                    <a href="{% url 'item:detail' product.id %}" class="flex-ctr-clm product">
+                        <div class="product-img-container">
+                                <img src="{{ product.image.url }}" alt="{{ product.name }} image" class="product-img">
+                        </div>
+                    
+                        <div class="flex-ctr-clm product-info">
+                            <h3>{{ product.name }}</h3>
+                            <p>{{ product.price }}$</p>
+                        </div>
+                    </a>
+               </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</main>
+
+{% include 'footer.html' %}
+
+{% endblock content %}
+
+
+{% block scripts %}
+
+{% endblock scripts %}

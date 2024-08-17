@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} {{ item.name }} Product {% endblock title %}
+
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'css/item-detail.css' %}">
+    <link rel="stylesheet" href="{% static 'css/product.css' %}">
+    <link rel="stylesheet" href="{% static 'css/form.css' %}">
+{% endblock links %}
+
+
+{% block content %}
+
+{% include 'header.html' %}
+
+<main class="flex-ctr-clm">
+    <div class="container">
+        <div class="item-detail flex-sp-ard">
+            <div class="item-img-container flex-ctr-clm">
+                <div class="main-img flex-center">
+                    <img src="{{ product.image.url }}" alt="product img" id="main-image">
+                </div>
+            </div>
+    
+            <div class="item-info flex-ctr-clm">
+                <h1>{{ product.name }}</h1>
+                <p class="price"> $ {{ product.price }} </p>
+                <p> <strong> Category : </strong> {{ product.category.name }}</p>
+                <p> <strong> Seller : </strong> {{ product.created_by }}</p>
+                {% if product.description %}
+                <p> <strong> Description : </strong>  {{ product.description }}</p>
+                {% endif %}
+
+                <hr style="height: 5px; border-radius: 5px; width: 100%; background-color: #1f1f1f; margin: 10px 0;">
+
+                
+                {% if request.user == product.created_by %}
+                <div class="user-option">
+                    <a href="{% url 'item:edit' product.id %}">
+                        <button class="btn" style="background-color: rgb(0, 255, 76);">Edit</button>
+                    </a>
+                    <a href="{% url 'item:delete' product.id %}">
+                        <button class="btn" style="background-color: red;">Delete</button>
+                    </a>
+                </div>
+    
+                {% else %}
+    
+                <div class="user-option">
+                        <a href="{% url 'conversation:new' product.id %}"><button class="btn buy_now" style="background-color: rgb(0, 255, 76);">Contact Seller</button></a>
+                    </a>
+                </div>
+                
+                {% endif %}    
+    
+            </div>
+        </div>
+    
+        <div class="flex-clm-str related-items-container">
+            <h2>Related Products : </h2>
+            <div class="flex-ctr-wr products">
+                {% for product in related_items %}
+                   <div class="flex-ctr-clm product-container">
+                        <a href="{% url 'item:detail' product.id %}" class="flex-ctr-clm product">
+                            <div class="product-img-container">
+                                <img src="{{ product.image.url }}" alt="{{ product.product_name }} image" class="product-img">
+                            </div>
+                        
+                            <div class="flex-ctr-clm product-info">
+                                <h3>{{ product.product_name }}</h3>
+                                <p>{{ product.price }}$</p>
+                            </div>
+                        </a>
+                   </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+{% include 'footer.html' %}
+
+{% endblock content %}
+
+
+{% block scripts %}
+
+{% endblock scripts %}

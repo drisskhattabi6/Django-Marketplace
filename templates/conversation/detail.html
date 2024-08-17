@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Ecommerce App {% endblock title %}
+
+
+{% block links %}
+<link rel="stylesheet" href="{% static 'css/form.css' %}">
+<link rel="stylesheet" href="{% static 'css/conversation2.css' %}">
+{% endblock links %}
+
+
+{% block content %}
+
+{% include 'header.html' %}
+
+<main class="flex-ctr-clm">
+    <div class="flex-ctr-clm container">
+        <h1>Conversation</h1>
+
+        <div class="conversation-container flex-clm-str">
+            {% for message in conversation.messages.all %}
+                <div class="conversation flex-str-clm {% if message.created_by == request.user %}owner{% else %}client{% endif %}">
+                    <div class="flex-str-clm conversation-content">
+                        <p><strong>{{ message.created_by.username }}</strong> @ {{ message.created_at }}</p>
+                        <p>{{ message.content }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <form method="post" action="." class="flex-clm-str">
+            {% csrf_token %}
+
+            <label for="id_content">Content:</label>
+            <textarea name="content" rows="1" required id="id_content" placeholder="write your message.."></textarea>
+
+            <button class="btn">Send</button>
+        </form>
+    </div>
+</main>
+
+{% include 'footer.html' %}
+
+{% endblock content %}
+

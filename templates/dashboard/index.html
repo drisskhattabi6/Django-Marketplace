@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Browse Products {% endblock title %}
+
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'css/product.css' %}">
+{% endblock links %}
+
+
+{% block content %}
+
+{% include 'header.html' %}
+
+<main class="flex-ctr-str">
+
+    <div class=" flex-ctr-clm">
+        {% if products.count == 0 %}
+       <h2 class="no-items"> You Don't have any Product </h2>
+        {% else %}
+        <h2>Your Products </h2>
+        {% endif %}
+
+        <div class="flex-ctr-wr products">
+            {% for product in products %}
+               <div class="flex-ctr-clm product-container">
+                    <a href="{% url 'item:detail' product.id %}" class="flex-ctr-clm product">
+                        <div class="product-img-container">
+                                <img src="{{ product.image.url }}" alt="{{ product.name }} image" class="product-img">
+                        </div>
+                    
+                        <div class="flex-ctr-clm product-info">
+                            <h3>{{ product.name }}</h3>
+                            <p>{{ product.price }}$</p>
+                        </div>
+                    </a>
+               </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</main>
+
+{% include 'footer.html' %}
+
+{% endblock content %}
+
+
+{% block scripts %}
+
+{% endblock scripts %}

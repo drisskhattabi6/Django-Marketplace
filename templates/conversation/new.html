@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Ecommerce App {% endblock title %}
+
+
+{% block links %}
+<link rel="stylesheet" href="{% static 'css/form.css' %}">
+<link rel="stylesheet" href="{% static 'css/conversation2.css' %}">
+{% endblock links %}
+
+
+{% block content %}
+
+{% include 'header.html' %}
+
+<main class="flex-ctr-clm">
+    <div class="flex-ctr-clm container">
+        <h1>New conversation</h1>
+
+        <form method="post" action="." class="flex-clm-str">
+            {% csrf_token %}
+
+            <label for="id_content">Content:</label>
+            <textarea name="content" rows="1" required id="id_content" placeholder="write your message.."></textarea>
+
+            <button class="btn">Send</button>
+
+            {% if form.errors or form.non_field_errors %}
+                <div>
+                    {% for field in form %}
+                        {{ field.errors }}
+                    {% endfor %}
+
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+        </form>
+    </div>
+</main>
+
+{% include 'footer.html' %}
+
+{% endblock content %}
+

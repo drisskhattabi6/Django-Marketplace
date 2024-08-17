@@ -1,0 +1,26 @@
+<footer>
+    <div class="container">
+        <div class="footer flex-sp-ard">
+
+            <a href="{% url 'core:index' %}"><h2>Marketplace</h2></a>
+
+            <ul class="flex-ctr-clm">
+                {% if not user.is_authenticated %}
+                <li><button class="btn"><a href="{% url 'core:login' %}">Login</a></button></li>
+                <li><button class="btn"><a href="{% url 'core:register' %}">Register</a></button></li>
+                {% else %}
+                <li><a href="">Home</a></li>
+                <li><button class="btn"><a href="{% url 'core:logout' %}">Logout</a></button></li>
+                {% endif %}
+            </ul>
+
+            <ul class="info2 flex-ctr-clm">
+                <li><a href="{% url 'item:browse' %}">Browse</a></li>
+            </ul>
+        </div>
+        <p class="copyright">
+            Copyrights &copy; reserved by the creator, 
+            Made with love <span>❤</span> by Idriss Khattabi.
+        </p>
+    </div>
+</footer>

@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Inbox {% endblock title %}
+
+
+{% block links %}
+<link rel="stylesheet" href="{% static 'css/conversation.css' %}">
+{% endblock links %}
+
+
+{% block content %}
+
+{% include 'header.html' %}
+
+<main class="flex-ctr-clm">
+    <div class="flex-clm-str container">
+        <h1>Inbox</h1>
+
+        <div class="flex-ctr-wr" style="width: 100%;">
+            {% for conversation in conversations %}
+                <a href="{% url 'conversation:detail' conversation.id %}" class="flex-center conversation-container">
+                    <div class="flex-start conversation">
+                        <div class="product-img-container">
+                            <img src="{{ conversation.item.image.url }}" class="product-img">
+                        </div>
+
+                        <div class="flex-clm-str conversation-info">
+                            {% for member in conversation.members.all %}
+                                {% if member != request.user %}
+                                    <p class="member"><strong>{{ member.username }}</strong> | {{ conversation.modified_at }}</p>
+                                    <p>Product name : <strong>{{ conversation.item.name }}</strong></p>
+                                    <p>Price : <strong>$ {{ conversation.item.price }}</strong></p>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+</main>
+
+{% include 'footer.html' %}
+
+{% endblock content %}
+

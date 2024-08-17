@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Ecommerce App {% endblock title %}
+
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'css/product.css' %}">
+    <link rel="stylesheet" href="{% static 'css/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'css/slick-theme.css' %}">
+{% endblock links %}
+
+
+{% block content %}
+
+{% include 'header.html' %}
+
+<main class="flex-ctr-clm">
+    <div class="flex-ctr-clm container">
+
+        <div class="flex-clm-str show-section">
+            <h2>New Products : </h2>
+            <div class="flex-ctr-wr products">
+                {% for product in products %}
+                   <div class="flex-ctr-clm product-container">
+                        <a href="{% url 'item:detail' product.id %}" class="flex-ctr-clm product">
+                            <div class="product-img-container">
+                                <img src="{{ product.image.url }}" alt="{{product.name}} image" class="product-img">
+                            </div>
+                        
+                            <div class="flex-ctr-clm product-info">
+                                <h3>{{ product.name }}</h3>
+                                <p>{{ product.price }}$</p>
+                            </div>
+                        </a>
+                   </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="flex-clm-str show-section browse-categories">
+            <h2>Browse by Category : </h2>
+            <div class="felx-center categories">
+                {% for category in categories %}
+                   <div class="flex-ctr-clm category-container">
+                        <a href="{% url 'item:browse' %}?q={{ query }}&category={{ category.id }}" class="flex-ctr-clm category">
+                            <div class="flex-clm-str category-info">
+                                <h3>{{ category.name }}</h3>
+                                <p class="categorie-count"> {{category.items.count}} Products </p>
+                            </div>
+                        </a>
+                   </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+</main>
+
+{% include 'footer.html' %}
+
+{% endblock content %}
+
+
+{% block scripts %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="{% static 'js/slick.min.js' %}"></script>
+
+<script>
+
+    $(document).ready(function(){
+        $('.products').slick({
+                arrows : true,
+                slidesToShow: 5,
+                slidesToScroll: 2,
+                dots: true,
+                infinite: false,    
+                responsive: [
+                            {
+                            breakpoint: 1200,
+                            settings: {
+                                slidesToShow: 4,
+                                slidesToScroll: 2,
+                                infinite: true,
+                                dots: true
+                            }
+                            },
+                            {
+                            breakpoint: 850,
+                            settings: {
+                                slidesToShow: 3,
+                                slidesToScroll: 1
+                            }
+                            },
+                            {
+                            breakpoint: 600,
+                            settings: {
+                                slidesToShow: 2,
+                                slidesToScroll: 1
+                            }
+                    }
+                ]
+        });
+    });
+
+    $(document).ready(function(){
+        $('.categories').slick({
+                arrows : true,
+                slidesToShow: 4,
+                slidesToScroll: 2,
+                dots: true,
+                infinite: false,
+                responsive: [
+                            {
+                            breakpoint: 1200,
+                            settings: {
+                                slidesToShow: 3,
+                                slidesToScroll: 2,
+                                infinite: true,
+                            }
+                            },
+                            {
+                            breakpoint: 850,
+                            settings: {
+                                slidesToShow: 2,
+                                slidesToScroll: 2
+                            }
+                            },
+                            {
+                            breakpoint: 600,
+                            settings: {
+                                slidesToShow: 1,
+                                slidesToScroll: 1
+                            }
+                    }
+                ]
+        });
+    });
+
+</script>
+
+<script src="{% static 'js/script.js' %}"></script>
+{% endblock scripts %}

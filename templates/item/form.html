@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} New Item {% endblock title %}
+
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'css/form.css' %}">
+{% endblock links %}
+
+
+{% block content %}
+
+{% include 'header.html' %}
+
+<main class="flex-ctr-clm">
+
+    <h1>Add New Item</h1>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form">
+            {{ form.as_p }}
+        </div>
+
+        {% if form.error or form.non_field_error %}
+           <div class="error">
+            {% for field in form %}
+                {{field.errors}}
+            {% endfor %}
+
+            {{form.non_field_errors}}
+           </div>
+        {% endif %}
+        <input class="btn" type="submit" value="Add Item">
+    </form>
+
+</main>
+
+{% include 'footer.html' %}
+
+{% endblock content %}
+
+
+{% block scripts %}
+
+{% endblock scripts %}
