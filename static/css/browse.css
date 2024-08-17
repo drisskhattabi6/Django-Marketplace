@@ -1,0 +1,81 @@
+
+main{
+    padding: 0%;
+    padding-bottom: 40px;
+    background-color: rgb(173, 245, 250);
+}
+
+.new-items-container, .categories-container, .browse-container {
+    width: 100%;
+    padding-top: 40px;
+}
+
+
+/* --------------------------- */
+
+.categories{
+    width: 100%;
+}
+
+.categorie{
+    width: 20%;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 20px 10px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    border: 1px solid #3d3d3d;
+}
+
+.categorie p {
+    margin: 0;
+    padding: 0;
+    color: #000;
+
+}
+
+.categorie-name{
+    font-weight: 700;
+    font-size: 18px;
+}
+
+/* --------------------------- */
+
+.options-container{
+    width: 20%;
+    padding: 20px 10px;
+    background-color: #232323;
+    border-top: 3px solid #3d3d3d;
+    height: 700px;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.options-container form {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.search-bar{
+    width: 90%;
+    outline: 0;
+    border-radius: 5px;
+    border: 0;
+    padding: 5px 7px;
+}
+
+
+.browse-container {
+    width: 80%;
+}
+
+
+.category-checkbox a{
+    color: #fff;
+}
+
+.category-checkbox li{
+    padding: 5px 10px;
+}
