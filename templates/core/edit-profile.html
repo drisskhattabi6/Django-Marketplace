@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Profile {% endblock title %}
+
+{% block links %}
+<link rel="stylesheet" href="{% static 'css/settings.css' %}">
+{% endblock links %}
+
+{% block content %}
+
+{% include 'header.html' %}
+
+<main class="flex-clm-str">
+    <div class="flex-ctr-clm container">
+        <div class="account-content flex-ctr-str">
+            <div class="options-container flex-clm-str">
+                <h1>Account</h1>
+
+                <ul class="flex-clm-str">
+                    <li> <a href="{% url 'core:profile' %}"> Profile </a> </li>
+                </ul>
+            </div>
+    
+            <div class="content-container flex-ctr-clm">
+                <div class="section flex-str-clm">
+                    <h3>Edit Profile</h3>
+                </div>
+                <div class="section flex-ctr-clm">
+            
+                    <form method="post" enctype="multipart/form-data" class="flex-ctr-clm" style="align-items: normal;">
+                        {% csrf_token %}
+            
+                        {{ form.as_p }}
+            
+                        <button type="submit" class="btn">Edit</button>
+                    </form>
+
+                    {% if form.errors %}
+                    <hr>
+                    <div class="errors">
+                        <p>Errors:</p>
+                        <ul style="list-style: none;">
+                            {% for field in form %}
+                                {% if field.errors %}
+                                    <li style="color:red"><span style="text-decoration: underline;">{{ field.label }}:</span> {{ field.errors|join:", " }}</li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+            
+                </div>
+            </div>       
+        </div>
+    </div>
+</main>
+
+{% include 'footer.html' %}
+    
+{% endblock content %}

@@ -1,0 +1,77 @@
+.account-content {
+    width: 100%;
+}
+
+.options-container {
+    width: 300px;
+    min-height: 350px;
+    background-color: #fff;
+    margin-right: 10px;
+    padding: 20px 15px;
+}
+
+.options-container h1 {
+    font-size: 20px;
+}
+
+.options-container ul {
+    list-style: none;
+}
+
+.options-container ul li {
+    font-size: 18px;
+    font-weight: 700;
+    padding: 5px 7px;
+}
+
+.content-container {
+    width: 100%;
+}
+
+/* ------------------------ */
+
+.user-info img {
+    width: 30px;
+    height: 40px;
+    margin: 10px 20px;
+    border-radius: 10px;
+}
+
+.section {
+    width: 100%;
+    background-color: #fff;
+    padding: 20px;
+    color: black;
+    margin: 10px;
+}
+
+.section div {
+    width: 100%;
+}
+
+.section .part {
+    margin: 10px 20px 20px;
+}
+
+.part .links {
+    max-width: 750px;
+    margin: 20px;
+}
+
+/* //------- */
+
+select {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+}
+
+option {
+    padding: 10px;
+}
+
+input {
+    margin: 7px 10px 10px;
+}

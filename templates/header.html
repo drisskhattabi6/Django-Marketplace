@@ -20,6 +20,7 @@
                 {% else %}
                 <li><a href="{% url 'dashboard:index' %}">Dashboard</a></li>
                 <li><a href="{% url 'conversation:inbox' %}">Inbox</a></li>
+                <li><a href="{% url 'core:profile' %}"> Profile </a></li>
                 <li><a href="{% url 'core:logout' %}" class="btn flex-center"> <i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
                 
                 {% endif %}

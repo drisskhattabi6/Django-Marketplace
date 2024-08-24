@@ -4,6 +4,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import *
 from Item.models import Category, Item
+from django.contrib.auth.decorators import login_required
+from .forms import UserEditForm
 
 
 def index(request):
@@ -69,3 +71,17 @@ def logout_view(request):
     logout(request)
     return redirect('core:index') 
 
+
+@login_required()
+def edit_profile(request):
+    profile = request.user
+
+    if request.method == 'POST':
+        form = UserEditForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('core:profile')
+    else:
+        form = UserEditForm(instance=profile)
+
+    return render(request, 'core/edit-profile.html', {'form': form})

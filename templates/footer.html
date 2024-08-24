@@ -9,8 +9,11 @@
                 <li><button class="btn"><a href="{% url 'core:login' %}">Login</a></button></li>
                 <li><button class="btn"><a href="{% url 'core:register' %}">Register</a></button></li>
                 {% else %}
-                <li><a href="">Home</a></li>
-                <li><button class="btn"><a href="{% url 'core:logout' %}">Logout</a></button></li>
+                <li><a href="{% url 'core:index' %}">Home</a></li>
+                <li><a href="{% url 'dashboard:index' %}">Dashboard</a></li>
+                <li><a href="{% url 'conversation:inbox' %}">Inbox</a></li>
+                <li><a href="{% url 'core:profile' %}"> Profile </a></li>
+                <li><a href="{% url 'core:logout' %}" class="btn flex-center"> <i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
                 {% endif %}
             </ul>
 
