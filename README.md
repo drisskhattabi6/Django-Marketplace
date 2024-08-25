@@ -89,7 +89,7 @@ git clone https://github.com/drisskhattabi6/Django-Marketplace.git
 Once the project is downloaded, navigate into the project directory:
 
 ```
-cd Django-Blog-Project
+cd Django-Marketplace
 ```
 
 Creating static folder:
@@ -120,14 +120,27 @@ python manage.py runserver
 
 The development server will start, and you can access the Blog Project by navigating to `http://127.0.0.1:8000/` in your web browser.
 
-## More Informations :
+## Importent Configuration : 
 
-- By default, you will find that there is data in the data base already. you can edit, create ou delete it using admin pannel after creating super user.
+Add an email with password in **setting.py** file, this email will be the sender of the reset password link to the users.
 
-- In this Application, I'm using sqlite as DataBase.
+```
+EMAIL_HOST_USER = 'Write Your Email Here'
+EMAIL_HOST_PASSWORD = 'Your Email PASSWORD Here'
+```
 
-- When I want to add a new post/topic, I'm using MarkDown syntax.
-  
-------
+## Contributing to the Project
 
-Feel free to explore the project and customize it according to your requirements. If you encounter any issues or have any questions, don't hesitate to reach out!"
+You're welcome to contribute to this project! If you'd like to make changes or improvements, here's how you can do it:
+
+1. **Fork the Repository:** Start by forking this repository to create your own copy.
+
+2. **Make Your Changes:** Edit the project as needed. Whether it's fixing a bug, adding a feature, or improving documentation, your contributions are appreciated!
+
+3. **Create a Pull Request:** Once you've made your changes, submit a pull request to merge your modifications into the main project. Please provide a brief description of what you've changed.
+
+4. **Review and Merge:** After reviewing the pull request, it can be merged into the main project.
+
+----
+
+Feel free to explore the project and customize it according to your requirements. If you encounter any issues or have any questions, don't hesitate to reach out!
